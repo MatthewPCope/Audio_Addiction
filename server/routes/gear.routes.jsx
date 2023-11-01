@@ -6,5 +6,4 @@ module.exports = (app) => {
     app.get('/api/gear/:id', GearController.getOneGear)
     app.put("/api/gear/:id", GearController.updateGear);
     app.delete("/api/gear/:id", GearController.deleteGear);
-    // app.get('api/gear/:id', GearController.getGearFromCertainUser)
 }

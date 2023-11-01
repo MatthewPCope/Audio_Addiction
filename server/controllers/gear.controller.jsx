@@ -37,7 +37,19 @@ module.exports = {
         Gear.deleteOne({ _id: req.params.id })
             .then(deleteConfirm => res.json(deleteConfirm))
             .catch(err => res.json(err))
-    },
+    }
+
+    // getGearByCategory: (req, res) => {
+    //     Gear.find({ category: req.body})
+    //     .then((bassGear) => {
+    //         res.json(bassGear)
+    //         console.log(bassGear)
+    //     })
+    //     .catch((err) => {
+    //         console.log("something went wrong with getting gear by bass")
+    //         res.status(400).json(err)
+    //     })
+    // } 
     
 
     

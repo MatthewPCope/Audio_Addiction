@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 import {Link} from 'react-router-dom';
 
-const EditGear = (props) => {
+const EditWish = (props) => {
     const { id } = useParams();
     const [category, setCategory] = useState(""); 
     const [brand, setBrand] = useState("");
@@ -15,7 +15,7 @@ const EditGear = (props) => {
     
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/api/gear/${id}`)
+            .get(`http://localhost:8000/api/wish/${id}`)
             .then((res) => {
                 setCategory(res.data.category);
                 setBrand(res.data.brand);
@@ -27,7 +27,7 @@ const EditGear = (props) => {
     }, [])
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8000/api/gear/${id}`,{
+        axios.put(`http://localhost:8000/api/wish/${id}`,{
             category,
             brand,
             model,
@@ -36,17 +36,17 @@ const EditGear = (props) => {
         })
             .then((res) => {
                 console.log(res.data);
-                navigate("/gearlist");
+                navigate("/wishlist");
             })
             .catch((err) => {
                 setErrors(err.response.data.errors)
             })
             
     }
-    const deleteGear = () => {
-        axios.delete(`http://localhost:8000/api/gear/${id}`)
+    const deleteWish = () => {
+        axios.delete(`http://localhost:8000/api/wish/${id}`)
             .then((res) => {
-                navigate("/gearlist");
+                navigate("/wishlist");
             })
             .catch((err) => {
                 console.log(err);
@@ -65,7 +65,7 @@ const EditGear = (props) => {
     
     return (
         <div>
-            <h1 className="font text-center mt-5 mb-2">Edit your Gear</h1>
+            <h1 className="font text-center mt-5 mb-2">Edit your Wish</h1>
             <div id = "container2">
                 <div className= 'font6 box p-4 my-3'>
                     <form onSubmit={submitHandler}>
@@ -115,12 +115,12 @@ const EditGear = (props) => {
                                     <button className='button2'>Submit</button>
                                 </div>
                                 <div>
-                                    <Link to={'/gearlist'}>
+                                    <Link to={'/wishlist'}>
                                         <button className=' font6 button' >Nevermind</button>
                                     </Link>
                                 </div>
-                                <div>
-                                    <button className='button2' onClick={deleteGear}>Sold It</button>
+                                <div className=' '>
+                                    <button className='button2' onClick={deleteWish}>Sold It</button>
                                 </div>
                                 </div>
                     </form>
@@ -129,4 +129,4 @@ const EditGear = (props) => {
         </div>
     )
 }
-export default EditGear;
+export default EditWish;

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const GearSchema = new mongoose.Schema(
+const WishSchema = new mongoose.Schema(
     {
     category: { type: String},
     brand: { type: String,
@@ -16,6 +16,6 @@ const GearSchema = new mongoose.Schema(
 
 
 
-const Gear = mongoose.model("Gear", GearSchema);
+const Wish = mongoose.model("Wish", WishSchema);
 
-module.exports = Gear;
+module.exports = Wish;

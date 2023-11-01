@@ -43,7 +43,7 @@ const GearPage = (props) => {
                                 <div className='d-flex justify-content-md-center mb-5 mt-5'>
                                     <div>
                                         <a target='_blank' rel='noopener noreferrer' href="https://www.reverb.com">
-                                            <button className=" font3 box2 circle-buttons">Sell</button>
+                                            <button className=" font3 box2 circle-buttons2">Sell</button>
                                         </a>
                                     </div>
                                     <div>
@@ -52,7 +52,7 @@ const GearPage = (props) => {
                                         </Link>
                                     </div>
                                     <div>
-                                        <button className=" font3 box2 circle-buttons" onClick={deleteGear}>Sold</button>
+                                        <button className=" font3 box2 circle-buttons2" onClick={deleteGear}>Sold</button>
                                     </div>
                                 </div>
                                 <div>

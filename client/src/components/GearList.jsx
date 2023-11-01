@@ -40,13 +40,14 @@ const GearList = (props) => {
                         <button className=' font2 button' >Add Gear</button>
                     </Link>
                 </div>
-                <div id="container2" >
+                <div id="container2" className='font6' >
             <table className=" table2 w-75 border-dark border-4 text-center table-bordered ">
                     <thead >
                         <tr >
                             <th className='p-3' scope="col">Category</th>
                             <th scope="col">Brand</th>
                             <th scope="col">Model</th>
+                            <th scope="col" >Price</th>
                             <th scope="col" colspan="2">Actions Available</th>
                         </tr>
                     </thead>
@@ -57,22 +58,37 @@ const GearList = (props) => {
                             <>
                     <tbody>
                         <tr className=''>
-                        <td className='p-3'>
+                            <td className='p-3'>
                             <Link key={index} to={`/gear/${gear._id}`}>
                                 <button className=" button3">{gear.category} </button>
-                            </Link></td>
+                            </Link>
+                            </td>
                             <td>{gear.brand}</td>
                             <td>{gear.model}</td>
-                            <td><Link to={`/gear/edit/${gear._id}`}>Edit</Link></td>
+                            <td>${gear.price}</td>
+                            <td>
+                                <Link key={index} to={`/gear/edit/${gear._id}`}>
+                                <button className=" button3">Edit </button>
+                                </Link>
+                            </td>
+                            
                             <td><button className='button3' onClick={() => deleteGear(gear._id)}>Sold It</button></td>
                         </tr>
                     </tbody>
+                    
                     </>
+                    
         )})
     }
-    </table>
+            </table>
+            
     </div>
-            </div>
+        <div className='text-center mt-3'>
+                    <Link to={'/'}>
+                        <button className='font2 button' >Home</button>
+                    </Link>
+        </div>
+        </div>
 )
 }
 export default GearList;

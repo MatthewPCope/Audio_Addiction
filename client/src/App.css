@@ -23,6 +23,21 @@
   url("./fonts/KeyTabMetal-MOAJ.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Vanessa";
+  
+  src: local("Vanessa"),
+  url("./fonts/vanessa-font/VanessaRegular-VKVw.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Rocker";
+  
+  src: local("Rocker"),
+  url("./fonts/the-rockers-font/TheRockers-qZnz5.ttf") format("truetype");
+}
+
+
 .font{
   font-family: "KeyTabMetal";
   font-size: 72pt;
@@ -34,6 +49,26 @@
 .font3{
   font-family: "KeyTabMetal";
   font-size: 48pt;
+}
+.font4{
+  font-family: "Vanessa";
+  font-size: 24pt;
+}
+.font5{
+  font-family: "Rocker";
+  font-size: 20pt;
+
+}
+.font6{
+  font-family: "Rocker";
+  font-size: 24pt;
+
+}
+
+.font7{
+  font-family: "Rocker";
+  font-size: 44pt;
+  
 }
 
 .box {
@@ -128,10 +163,20 @@
 
 .circle-buttons{
   background-color:transparent;
-  
+  color: transparent;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
 }
 .circle-buttons:hover {
+  background-color: #666c5b;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+}
+.circle-buttons2{
+  background-color:transparent;
+  
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+}
+.circle-buttons2:hover {
   background-color: #666c5b;
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
@@ -210,3 +255,6 @@
   background-size: cover;
 }
 
+p{
+  color:red
+}

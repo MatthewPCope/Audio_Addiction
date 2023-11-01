@@ -13,9 +13,7 @@ const GearForm = (props) => {
     const [errors, setErrors] = useState({})
 
     const onSubmitHandler = (e) => {
-
         e.preventDefault();
-
         axios.post('http://localhost:8000/api/gear', {
             category,
             brand,
@@ -29,18 +27,15 @@ const GearForm = (props) => {
                 setModel("");
                 setPrice("");
                 setThoughts("")
-
                 navigate('/gearlist');
             })
             .catch(err=> {
                 setErrors(err.response.data.errors)
             })
-                
-            
+        }
 
-    }
     const options = [
-        { value: 'select', label: 'Select...' },
+        { value: 'electric guitar', label: 'Select...' },
         { value: 'electric guitar', label: 'Electric Guitar' },
         { value: 'acoustic guitar', label: 'Acoustic Guitar' },
         { value: 'bass', label: 'Bass' },
@@ -50,71 +45,77 @@ const GearForm = (props) => {
         { value: 'recording', label: 'Recording' },
         { value: 'live sound', label: 'Live Sound' }
     ]
-    
-    return (
-        <>
-        <div >
-            <h1 className=' font text-center mb-5 mt-5'>Add Gear</h1>
-            
+        
+        return (
+            <>
+            <div >
+                <h1 className=' font text-center mb-5 mt-5'>Add Gear</h1>
                 
-                    <div id='container2'>
-                        <div className= ' box p-4 my-3'>
-                            <form onSubmit={onSubmitHandler}>
-                            
-                                <div className=' form-group mb-4'>
-                                    <label htmlFor="category" className='form-label'>Category:</label><br/>
-                                    <select className='form-select' name='category' id="category" onChange = {(e)=>setCategory(e.target.value)}>
-                                        {options.map(option => (
-                                            <option value={option.value}>{option.label}</option>
-                                        ))}
-                                    
-                                    </select>
-                                    { errors.category ? 
-                                    <p>{errors.category.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label htmlFor="brand" className='form-label'>Brand:</label><br/>
-                                    <input className='form-control' type="text" value = {brand} id="brand" name = "brand" onChange = {(e)=>setBrand(e.target.value)}/>
-                                    { errors.brand ? 
-                                    <p>{errors.brand.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label htmlFor="model" className='form-label'>Model:</label><br/>
-                                    <input className='form-control' type="text" id="model" value = {model} name = "model" onChange = {(e)=>setModel(e.target.value)}/>
-                                    { errors.model ? 
-                                    <p>{errors.model.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label htmlFor="price" className='form-label'>Price:</label><br/>
-                                    <input className='form-control' type="text" id="price" value = {price} name = "price" onChange = {(e)=>setPrice(e.target.value)}/>
-                                    { errors.price ? 
-                                    <p>{errors.price.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label htmlFor="thoughts" className='form-label'>Thoughts:(You can add your thoughts later)</label><br/>
-                                    <textarea className='form-control' type="text" id="thoughts" rows="4" cols="50" value = {thoughts} name = "thoughts" onChange = {(e)=>setThoughts(e.target.value)}/>
-                                </div>
-                                    
+                    
+                        <div id='container2'>
+                            <div className= 'font5 box p-4 my-3'>
+                                <form onSubmit={onSubmitHandler}>
                                 
-                                <div className='text-center'>
-                                    <button className='button2'>Submit</button>
-                                </div>
-                                <div className='text-center mt-3'>
-                                    <Link to={'/gearlist'}>Nevermind</Link>
-                                </div>
-                            </form>
-                        </div>
+                                    <div className=' form-group mb-4'>
+                                        <label htmlFor="category" className='form-label'>Category:</label><br/>
+                                        <select className='form-select' name='category' id="category" onChange = {(e)=>setCategory(e.target.value)}>
+                                            {options.map(option => (
+                                                <option value={option.value}>{option.label}</option>
+                                            ))}
+                                        
+                                        </select>
+                                        { errors.category ? 
+                                        <p>{errors.category.message}</p>
+                                        : null
+                                        }
+                                    </div>
+                                    <div className='form-group mb-4'>
+                                        <label htmlFor="brand" className='form-label'>Brand:</label><br/>
+                                        <input className='form-control' type="text" value = {brand} id="brand" name = "brand" onChange = {(e)=>setBrand(e.target.value)}/>
+                                        { errors.brand ? 
+                                        <p>{errors.brand.message}</p>
+                                        : null
+                                        }
+                                    </div>
+                                    <div className='form-group mb-4'>
+                                        <label htmlFor="model" className='form-label'>Model:</label><br/>
+                                        <input className='form-control' type="text" id="model" value = {model} name = "model" onChange = {(e)=>setModel(e.target.value)}/>
+                                        { errors.model ? 
+                                        <p>{errors.model.message}</p>
+                                        : null
+                                        }
+                                    </div>
+                                    <div className='form-group mb-4'>
+                                        <label htmlFor="price" className='form-label'>Price:</label><br/>
+                                        <input className='form-control' type="text" id="price" value = {price} name = "price" onChange = {(e)=>setPrice(e.target.value)}/>
+                                        { errors.price ? 
+                                        <p>{errors.price.message}</p>
+                                        : null
+                                        }
+                                    </div>
+                                    <div className='form-group mb-4'>
+                                        <label htmlFor="thoughts" className='form-label'>Thoughts: (You can add your thoughts later)</label><br/>
+                                        <textarea className='form-control' type="text" id="thoughts" rows="4" cols="50" value = {thoughts} name = "thoughts" onChange = {(e)=>setThoughts(e.target.value)}/>
+                                    </div>
+                                        
+                                    
+                                    <div className='text-center'>
+                                        <button className='button2'>Submit</button>
+                                    </div>
+                                    <div className='text-center'>
+                                    <Link to={'/'}>
+                                        <button className=' font6 button' >Nevermind</button>
+                                    </Link>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
                 </div>
-            </div>
-        </>
-    )
-}
-export default GearForm;
+            </>
+        )
+    }
+    export default GearForm;
+
+
+                
+            
