@@ -13,6 +13,8 @@ const gearRoutes = require('./routes/gear.routes.jsx')
 gearRoutes(app)
 const wishRoutes = require('./routes/wish.routes.jsx')
 wishRoutes(app)
+const lotteryRoutes = require('./routes/lottery.routes.jsx')
+lotteryRoutes(app)
 
 app.listen(8000, () => {
     console.log("Crackalackin' at Port 8000")

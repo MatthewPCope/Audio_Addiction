@@ -4,8 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {Link} from 'react-router-dom';
 
 const EditWish = (props) => {
-    const { id } = useParams();
-    const [category, setCategory] = useState(""); 
+    const { id } = useParams(); 
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
     const [price, setPrice] = useState("");
@@ -17,7 +16,6 @@ const EditWish = (props) => {
         axios
             .get(`http://localhost:8000/api/wish/${id}`)
             .then((res) => {
-                setCategory(res.data.category);
                 setBrand(res.data.brand);
                 setModel(res.data.model)
                 setPrice(res.data.price)
@@ -28,7 +26,6 @@ const EditWish = (props) => {
     const submitHandler = (e) => {
         e.preventDefault();
         axios.put(`http://localhost:8000/api/wish/${id}`,{
-            category,
             brand,
             model,
             price,
@@ -36,7 +33,7 @@ const EditWish = (props) => {
         })
             .then((res) => {
                 console.log(res.data);
-                navigate("/wishlist");
+                navigate(`/wishpage/${id}`);
             })
             .catch((err) => {
                 setErrors(err.response.data.errors)
@@ -52,16 +49,6 @@ const EditWish = (props) => {
                 console.log(err);
             })
     }
-    const options = [
-        { value: 'electric guitar', label: 'Electric Guitar' },
-        { value: 'acoustic guitar', label: 'Acoustic Guitar' },
-        { value: 'bass', label: 'Bass' },
-        { value: 'drums', label: 'Drums' },
-        { value: 'microphones', label: 'Microphones' },
-        { value: 'pedals', label: 'Pedals' },
-        { value: 'recording', label: 'Recording' },
-        { value: 'live sound', label: 'Live Sound' }
-    ]
     
     return (
         <div>
@@ -69,60 +56,47 @@ const EditWish = (props) => {
             <div id = "container2">
                 <div className= 'font6 box p-4 my-3'>
                     <form onSubmit={submitHandler}>
-                    <div className=' form-group mb-4'>
-                                    <label className='form-label'>Category:</label><br/>
-                                    <select className='form-select' name='category' value={category} onChange = {(e)=>setCategory(e.target.value)}>
-                                        {options.map(option => (
-                                            <option value={option.value}>{option.label}</option>
-                                        ))}
-                                    
-                                    </select>
-                                    { errors.category ? 
-                                    <p>{errors.category.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label className='form-label'>Brand:</label><br/>
-                                    <input className='form-control' type="text" value = {brand} name = "brand" onChange = {(e)=>setBrand(e.target.value)}/>
-                                    { errors.brand ? 
-                                    <p>{errors.brand.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label className='form-label'>Model:</label><br/>
-                                    <input className='form-control' type="text" value = {model} name = "model" onChange = {(e)=>setModel(e.target.value)}/>
-                                    { errors.model ? 
-                                    <p>{errors.model.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label htmlFor="price" className='form-label'>Price:</label><br/>
-                                    <input className='form-control' type="text" id="price" value = {price} name = "price" onChange = {(e)=>setPrice(e.target.value)}/>
-                                    { errors.price ? 
-                                    <p>{errors.price.message}</p>
-                                    : null
-                                    }
-                                </div>
-                                <div className='form-group mb-4'>
-                                    <label htmlFor="thoughts" className='form-label'>Thoughts:</label><br/>
-                                    <textarea className='form-control' type="text" id="thoughts" rows="4" cols="50" value = {thoughts} name = "thoughts" onChange = {(e)=>setThoughts(e.target.value)}/>
-                                </div>
-                                <div className='d-flex justify-content-evenly'>
-                                <div className=''>
-                                    <button className='button2'>Submit</button>
-                                </div>
-                                <div>
-                                    <Link to={'/wishlist'}>
-                                        <button className=' font6 button' >Nevermind</button>
-                                    </Link>
-                                </div>
-                                <div className=' '>
-                                    <button className='button2' onClick={deleteWish}>Sold It</button>
-                                </div>
-                                </div>
+                        <div className='form-group mb-4'>
+                            <label className='form-label'>Brand:</label><br/>
+                            <input className='form-control' type="text" value = {brand} name = "brand" onChange = {(e)=>setBrand(e.target.value)}/>
+                            { errors.brand ? 
+                            <p>{errors.brand.message}</p>
+                            : null
+                            }
+                        </div>
+                        <div className='form-group mb-4'>
+                            <label className='form-label'>Model:</label><br/>
+                            <input className='form-control' type="text" value = {model} name = "model" onChange = {(e)=>setModel(e.target.value)}/>
+                            { errors.model ? 
+                            <p>{errors.model.message}</p>
+                            : null
+                            }
+                        </div>
+                        <div className='form-group mb-4'>
+                            <label htmlFor="price" className='form-label'>Price:</label><br/>
+                            <input className='form-control' type="text" id="price" value = {price} name = "price" onChange = {(e)=>setPrice(e.target.value)}/>
+                            { errors.price ? 
+                            <p>{errors.price.message}</p>
+                            : null
+                            }
+                        </div>
+                        <div className='form-group mb-4'>
+                            <label htmlFor="thoughts" className='form-label'>Thoughts:</label><br/>
+                            <textarea className='form-control' type="text" id="thoughts" rows="4" cols="50" value = {thoughts} name = "thoughts" onChange = {(e)=>setThoughts(e.target.value)}/>
+                        </div>
+                        <div className='d-flex justify-content-evenly'>
+                        <div>
+                            <Link to={'/wishlist'}>
+                                <button className=' font6 button2' >Wish List</button>
+                            </Link>
+                        </div>
+                        <div className=''>
+                            <button className='button'>Submit</button>
+                        </div>
+                        <div className=' '>
+                            <button className='button2' onClick={deleteWish}>Sold It</button>
+                        </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -130,3 +104,4 @@ const EditWish = (props) => {
     )
 }
 export default EditWish;
+                    

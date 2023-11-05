@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-const WishForm = (props) => {
+const LotteryForm = (props) => {
     const navigate = useNavigate(); 
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
@@ -14,7 +14,7 @@ const WishForm = (props) => {
 
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/wish', {
+        axios.post('http://localhost:8000/api/lottery', {
             brand,
             model,
             price,
@@ -25,8 +25,7 @@ const WishForm = (props) => {
                 setModel("");
                 setPrice("");
                 setThoughts("")
-
-                navigate('/wishlist');
+                navigate('/lotterylist');
             })
             .catch(err=> {
                 setErrors(err.response.data.errors)
@@ -39,9 +38,8 @@ const WishForm = (props) => {
     return (
         <>
         <div >
-            <h1 className=' font text-center mb-3 mt-5'>You might just get it</h1>
-                <h3 className=' font6 text-center mb-3 '>Add to your wish list</h3>
-                
+            <h1 className=' font text-center mb-3 mt-5'>Dream On</h1>
+                <h3 className=' font6 text-center mb-3 '>Add your dream gear</h3>
                     <div id='container2'>
                         <div className= 'font6 box p-4 my-3'>
                             <form onSubmit={onSubmitHandler}>
@@ -85,8 +83,8 @@ const WishForm = (props) => {
                                         <button className=' font6 button'>Submit</button>
                                     </div>
                                     <div>
-                                        <Link to={'/wishlist'}>
-                                            <button className=' font6 button2' >Wishes</button>
+                                        <Link to={'/lotterylist'}>
+                                            <button className=' font6 button2' >View List</button>
                                         </Link>
                                     </div>
                                 </div>
@@ -97,4 +95,6 @@ const WishForm = (props) => {
         </>
     )
 }
-export default WishForm;
+export default LotteryForm;
+            
+                

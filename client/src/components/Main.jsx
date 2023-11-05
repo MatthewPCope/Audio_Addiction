@@ -8,7 +8,7 @@ const Main = (props) => {
     
     return (
         <div>
-            <h1 className=' font text-center mt-5'>My Audio Addiction</h1>
+            <h1 className=' font text-center mt-5'>Audio Addiction</h1>
             <h5 className='font6 text-center'> Have a lot of gear?</h5>
             <h5 className='font6 text-center'> Keep track of it here.</h5>
             <div>
@@ -23,12 +23,12 @@ const Main = (props) => {
                     
                         <div>
                             <Link to={'/wishform'}>
-                                <button className="box3 font7 circle-buttons aguitars">careful what you wish for</button>
+                                <button className="box3 font8 circle-buttons aguitars">Careful what you wish for</button>
                             </Link>
                         </div>
                     
                         <div>
-                            <Link to={'/gearlist'}>
+                            <Link to={'/lotteryform'}>
                                 <button className="box3 font7 circle-buttons basses">If I won the Lottery</button>
                             </Link>
                         </div>
@@ -51,8 +51,8 @@ const Main = (props) => {
                         </div>
                     
                         <div>
-                            <Link to={'/gearlist'}>
-                                <button className="box3  font7 circle-buttons drums">Lottery</button>
+                            <Link to={'/lotterylist'}>
+                                <button className="box3  font7 circle-buttons amp">Lottery</button>
                             </Link>
                         </div>
                     </div>

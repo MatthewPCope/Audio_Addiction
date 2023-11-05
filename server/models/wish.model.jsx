@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const WishSchema = new mongoose.Schema(
     {
-    category: { type: String},
     brand: { type: String,
         required: [true, "Brand is required"] },
     model: { type: String,

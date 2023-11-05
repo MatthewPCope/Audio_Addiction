@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 import {Link} from 'react-router-dom';
 
-const EditGear = (props) => {
-    const { id } = useParams();
+const EditLottery = (props) => {
+    const { id } = useParams(); 
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
     const [price, setPrice] = useState("");
@@ -14,7 +14,7 @@ const EditGear = (props) => {
     
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/api/gear/${id}`)
+            .get(`http://localhost:8000/api/lottery/${id}`)
             .then((res) => {
                 setBrand(res.data.brand);
                 setModel(res.data.model)
@@ -25,7 +25,7 @@ const EditGear = (props) => {
     }, [])
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8000/api/gear/${id}`,{
+        axios.put(`http://localhost:8000/api/lottery/${id}`,{
             brand,
             model,
             price,
@@ -33,17 +33,17 @@ const EditGear = (props) => {
         })
             .then((res) => {
                 console.log(res.data);
-                navigate(`/gear/${id}`);
+                navigate(`/lotterypage/${id}`);
             })
             .catch((err) => {
                 setErrors(err.response.data.errors)
             })
             
     }
-    const deleteGear = () => {
-        axios.delete(`http://localhost:8000/api/gear/${id}`)
+    const deleteLottery = () => {
+        axios.delete(`http://localhost:8000/api/lottery/${id}`)
             .then((res) => {
-                navigate("/gearlist");
+                navigate("/lotterylist");
             })
             .catch((err) => {
                 console.log(err);
@@ -52,7 +52,7 @@ const EditGear = (props) => {
     
     return (
         <div>
-            <h1 className="font text-center mt-5 mb-2">Edit your Gear</h1>
+            <h1 className="font text-center mt-5 mb-2">Edit your Lottery Entry</h1>
             <div id = "container2">
                 <div className= 'font6 box p-4 my-3'>
                     <form onSubmit={submitHandler}>
@@ -86,15 +86,15 @@ const EditGear = (props) => {
                         </div>
                         <div className='d-flex justify-content-evenly'>
                         <div>
-                            <Link to={'/gearlist'}>
-                                <button className=' font6 button2' >View Gear</button>
+                            <Link to={'/lotterylist'}>
+                                <button className=' font6 button2' >View List</button>
                             </Link>
                         </div>
                         <div className=''>
                             <button className='button'>Submit</button>
                         </div>
                         <div>
-                            <button className='button2' onClick={deleteGear}>Sold It</button>
+                            <button className='button2' onClick={deleteLottery}>Sold It</button>
                         </div>
                         </div>
                     </form>
@@ -103,4 +103,4 @@ const EditGear = (props) => {
         </div>
     )
 }
-export default EditGear;
+export default EditLottery;

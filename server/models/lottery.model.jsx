@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const GearSchema = new mongoose.Schema(
+const LotterySchema = new mongoose.Schema(
     {
     brand: { type: String,
         required: [true, "Brand is required"] },
@@ -15,6 +15,6 @@ const GearSchema = new mongoose.Schema(
 
 
 
-const Gear = mongoose.model("Gear", GearSchema);
+const Lottery = mongoose.model("Lottery", LotterySchema);
 
-module.exports = Gear;
+module.exports = Lottery;

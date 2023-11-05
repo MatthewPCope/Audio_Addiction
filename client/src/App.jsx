@@ -13,6 +13,11 @@ import EditGear from './components/EditGear.jsx'
 import GearPage from './components/GearPage.jsx'
 import WishList from './components/WishList.jsx'
 import EditWish from './components/EditWish.jsx'
+import WishPage from './components/WishPage.jsx'
+import LotteryForm from './components/LotteryForm.jsx'
+import LotteryList from './components/LotteryList.jsx'
+import LotteryPage from './components/LotteryPage.jsx'
+import EditLottery from './components/EditLottery.jsx'
 
 function App() {
     const [mainUser, setMainUser] = useState({
@@ -35,6 +40,11 @@ function App() {
           <Route path="/wishform" element={<WishForm/>}/>
           <Route path="/wishlist" element={<WishList/>}/>
           <Route path="/wish/edit/:id" element={<EditWish/>}/>
+          <Route path="/wishpage/:id" element={<WishPage/>}/>
+          <Route path="/lotteryform" element={<LotteryForm/>}/>
+          <Route path="/lotterylist" element={<LotteryList/>}/>
+          <Route path="/lottery/edit/:id" element={<EditLottery/>}/>
+          <Route path="/lotterypage/:id" element={<LotteryPage/>}/>
         </Routes>
       </BrowserRouter>
     </>

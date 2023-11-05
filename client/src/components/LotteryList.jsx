@@ -2,38 +2,38 @@ import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
 import axios from 'axios';  
 
-const WishList = (props) => {
+const LotteryList = (props) => {
     
-    const [wishList, setWishList] = useState([]);
-    
+    const [lotteryList, setLotteryList] = useState([]);
+
     useEffect(()=>{
-        axios.get("http://localhost:8000/api/wish")
+        axios.get("http://localhost:8000/api/lottery")
         .then((res)=>{
             console.log(res.data);
-            setWishList(res.data);
+            setLotteryList(res.data);
         })
         .catch((err)=>{
             console.log(err);
         })
     }, [])
 
-    const deleteWish = (idFromBelow) => {
-        axios.delete(`http://localhost:8000/api/wish/${idFromBelow}`)
+    const deleteLottery = (idFromBelow) => {
+        axios.delete(`http://localhost:8000/api/lottery/${idFromBelow}`)
             .then((res) => {
-                const newList = wishList.filter((wish, index) => wish._id != idFromBelow)
-                setWishList(newList);
+                const newList = lotteryList.filter((lottery, index) => lottery._id != idFromBelow)
+                setLotteryList(newList);
             })
             .catch((err) => {
                 console.log(err);
             })
     }
-
+                
     return (
         <>
-            <h1 className='font text-center mb-3 mt-5'>Wish List</h1>
+            <h1 className=' font text-center mb-3 mt-5'>Lottery List</h1>
                 <div className='text-center'>
-                    <Link to={'/wishform'}>
-                        <button className=' font2 button' >careful what you wish for</button>
+                    <Link to={'/lotteryform'}>
+                        <button className=' font2 button' >If I won the lottery</button>
                     </Link>
                 </div>
                 <div id="container2" className='font6' >
@@ -48,38 +48,39 @@ const WishList = (props) => {
                         </thead>
                         <tbody >
                         {
-                        wishList.map((wish, index)=>{
+                        lotteryList.map((lottery, index)=>{
                             return (
-                                <tr key={wish._id}>
+                                <tr key={lottery._id}>
                                     <td>
-                                        <Link  to={`/wishpage/${wish._id}`}>
-                                            <button className=" button3">{wish.brand} </button>
+                                        <Link to={`/lotterypage/${lottery._id}`}>
+                                            <button className="button3">{lottery.brand} </button>
                                         </Link>
                                     </td>
-                                    <td>
-                                        <Link  to={`/wishpage/${wish._id}`}>
-                                            <button className=" button3">{wish.model} </button>
+                                    <td >
+                                        <Link to={`/lotterypage/${lottery._id}`}>
+                                            <button className=" button3">{lottery.model} </button>
                                         </Link>
                                     </td>
-                                    <td>${wish.price}</td>
+                                    <td>${lottery.price}</td>
                                     <td>
-                                        <Link to={`/wish/edit/${wish._id}`}>
+                                        <Link to={`/lottery/edit/${lottery._id}`}>
                                             <button className=" button4">Edit </button>
                                         </Link>
                                     </td>
                                     <td>
-                                        <button className='button4' onClick={() => deleteWish(wish._id)}>Remove</button>
+                                        <button className='button4' onClick={() => deleteLottery(lottery._id)}>Remove</button>
                                     </td>
                                 </tr>
-                            )})}
+                        )})}
                         </tbody>
                     </table>
                 </div>
                 <div className='text-center mt-3'>
-                    <Link to={'/'}>
-                        <button className='font2 button' >Home</button>
-                    </Link>
+                            <Link to={'/'}>
+                                <button className='font2 button' >Home</button>
+                            </Link>
                 </div>
         </>
 )}
-export default WishList;
+export default LotteryList;
+
